@@ -1,0 +1,10 @@
+server:
+  port: 9001
+eureka:  client:    service-url:
+      defaultZone: http://localhost:8761/eureka
+spring:  application:    name: api-gateway
+  cloud:    gateway:      discovery:        locator:          enabled: true
+      routes:      - id: Organization-server
+        uri: lb://Organization-server
+        predicates:        - Path="/api/organization/**"
+          
